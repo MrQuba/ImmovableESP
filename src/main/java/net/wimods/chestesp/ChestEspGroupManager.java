@@ -22,6 +22,7 @@ public final class ChestEspGroupManager
 	public final ChestEspBlockGroup barrels;
 	public final ChestEspBlockGroup shulkerBoxes;
 	public final ChestEspBlockGroup sculk;
+	public final ChestEspBlockGroup spawner;
 	public final ChestEspBlockGroup hoppers;
 	public final ChestEspEntityGroup hopperCarts;
 	public final ChestEspBlockGroup droppers;
@@ -58,10 +59,12 @@ public final class ChestEspGroupManager
 			c -> c.include_furnaces);
         this.sculk = new ChestEspBlockGroup(ch, c -> c.sculk_color,
 				c -> c.include_sculk);
+		this.spawner = new ChestEspBlockGroup(ch, c -> c.spawner_color,
+				c -> c.include_spawner);
 
         allGroups = Arrays.asList(basicChests, trapChests, enderChests,
 			chestCarts, chestBoats, barrels, shulkerBoxes, hoppers, hopperCarts,
-			droppers, dispensers, furnaces, sculk);
+			droppers, dispensers, furnaces, sculk, spawner);
 		entityGroups = Arrays.asList(chestCarts, chestBoats, hopperCarts);
 	}
 }

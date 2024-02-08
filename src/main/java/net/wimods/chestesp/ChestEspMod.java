@@ -7,12 +7,7 @@
  */
 package net.wimods.chestesp;
 
-import org.lwjgl.opengl.GL11;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.mojang.blaze3d.systems.RenderSystem;
-
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
@@ -30,6 +25,9 @@ import net.minecraft.entity.vehicle.ChestMinecartEntity;
 import net.minecraft.entity.vehicle.HopperMinecartEntity;
 import net.wimods.chestesp.util.ChunkUtils;
 import net.wimods.chestesp.util.RenderUtils;
+import org.lwjgl.opengl.GL11;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class ChestEspMod
 {
@@ -121,6 +119,8 @@ public final class ChestEspMod
 				groups.sculk.add(blockEntity);
 			else if(blockEntity instanceof SculkShriekerBlockEntity)
 				groups.sculk.add(blockEntity);
+			else if(blockEntity instanceof MobSpawnerBlockEntity)
+				groups.spawner.add(blockEntity);
 			else if(blockEntity instanceof AbstractFurnaceBlockEntity)
 				groups.furnaces.add(blockEntity);
 		});

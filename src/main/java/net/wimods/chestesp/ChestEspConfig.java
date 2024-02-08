@@ -26,37 +26,37 @@ public final class ChestEspConfig implements ConfigData
 	@ConfigEntry.Gui.Tooltip
 	public int chest_color = 0x00FF00;
 	
-	public boolean include_trap_chests = true;
+	public boolean include_trap_chests = false;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int trap_chest_color = 0xFF8000;
 	
-	public boolean include_ender_chests = true;
+	public boolean include_ender_chests = false;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int ender_chest_color = 0x00FFFF;
 	
-	public boolean include_chest_carts = true;
+	public boolean include_chest_carts = false;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int chest_cart_color = 0xFFFF00;
 	
-	public boolean include_chest_boats = true;
+	public boolean include_chest_boats = false;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int chest_boat_color = 0xFFFF00;
 	
-	public boolean include_barrels = true;
+	public boolean include_barrels = false;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int barrel_color = 0x00FF00;
 	
-	public boolean include_shulker_boxes = true;
+	public boolean include_shulker_boxes = false;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
@@ -95,4 +95,8 @@ public final class ChestEspConfig implements ConfigData
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int sculk_color = 0xFF0000;
+	public boolean include_spawner = true;
+	@ConfigEntry.ColorPicker
+	@ConfigEntry.Gui.Tooltip
+	public int spawner_color = 0xFF0000;
 }
