@@ -115,6 +115,12 @@ public final class ChestEspMod
 				groups.droppers.add(blockEntity);
 			else if(blockEntity instanceof DispenserBlockEntity)
 				groups.dispensers.add(blockEntity);
+			else if(blockEntity instanceof SculkCatalystBlockEntity)
+				groups.sculk.add(blockEntity);
+			else if(blockEntity instanceof SculkSensorBlockEntity)
+				groups.sculk.add(blockEntity);
+			else if(blockEntity instanceof SculkShriekerBlockEntity)
+				groups.sculk.add(blockEntity);
 			else if(blockEntity instanceof AbstractFurnaceBlockEntity)
 				groups.furnaces.add(blockEntity);
 		});

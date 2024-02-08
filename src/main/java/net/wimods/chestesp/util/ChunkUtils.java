@@ -10,15 +10,20 @@ package net.wimods.chestesp.util;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.ChunkManager;
 import net.minecraft.world.chunk.WorldChunk;
 
 public enum ChunkUtils
 {
 	;
-	
 	private static final MinecraftClient MC = MinecraftClient.getInstance();
 	
 	public static Stream<BlockEntity> getLoadedBlockEntities()
@@ -26,7 +31,10 @@ public enum ChunkUtils
 		return getLoadedChunks()
 			.flatMap(chunk -> chunk.getBlockEntities().values().stream());
 	}
-	
+
+
+
+
 	public static Stream<WorldChunk> getLoadedChunks()
 	{
 		int radius = Math.max(2, MC.options.getClampedViewDistance()) + 3;

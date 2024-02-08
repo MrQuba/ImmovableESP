@@ -91,4 +91,8 @@ public final class ChestEspConfig implements ConfigData
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int furnace_color = 0xFF0000;
+	public boolean include_sculk = true;
+	@ConfigEntry.ColorPicker
+	@ConfigEntry.Gui.Tooltip
+	public int sculk_color = 0xFF0000;
 }

@@ -1,7 +1,7 @@
 {
   "key.chestesp.toggle": "Toggle ChestESP",
   "text.autoconfig.chestesp.title": "ChestESP Settings",
-  "text.autoconfig.chestesp.option.enable": "Enable ChestESP",
+  "text.autoconfig.chestesp.option.enable": "Enable ImmovableESP",
   "text.autoconfig.chestesp.option.enable.@Tooltip": "This setting allows you to completely disable ChestESP.\nProTip: If you go to Options > Controls > Key Binds, you can set up a keybind to do this more quickly.",
   "text.autoconfig.chestesp.option.style": "Style",
   "text.autoconfig.chestesp.option.style.@Tooltip": "Controls how ChestESP will highlight chests.\nBoxes only: Chests will be highlighted with a colored box around them.\nLines only: Chests will be highlighted with a line going from your crosshair to the chest.\nLines and boxes: Both of the above.",
@@ -42,5 +42,8 @@
   "text.autoconfig.chestesp.option.dispenser_color.@Tooltip": "Dispensers will be highlighted in this color.",
   "text.autoconfig.chestesp.option.include_furnaces": "Include furnaces",
   "text.autoconfig.chestesp.option.furnace_color": "Furnace color",
-  "text.autoconfig.chestesp.option.furnace_color.@Tooltip": "Furnaces, smokers, and blast furnaces will be highlighted in this color."
+  "text.autoconfig.chestesp.option.furnace_color.@Tooltip": "Furnaces, smokers, and blast furnaces will be highlighted in this color.",
+  "text.autoconfig.chestesp.option.include_furnaces": "Include sculk",
+  "text.autoconfig.chestesp.option.furnace_color": "Sculk color",
+  "text.autoconfig.chestesp.option.furnace_color.@Tooltip": "Sculk catalysts, sculk shriekers, and sculk sensors will be highlighted in this color."
 }
