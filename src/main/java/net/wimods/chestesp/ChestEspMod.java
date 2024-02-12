@@ -13,6 +13,9 @@ import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.CryingObsidianBlock;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
@@ -23,6 +26,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.vehicle.ChestBoatEntity;
 import net.minecraft.entity.vehicle.ChestMinecartEntity;
 import net.minecraft.entity.vehicle.HopperMinecartEntity;
+import net.minecraft.text.Text;
+import net.minecraft.util.math.BlockPos;
 import net.wimods.chestesp.util.ChunkUtils;
 import net.wimods.chestesp.util.RenderUtils;
 import org.lwjgl.opengl.GL11;
@@ -43,6 +48,7 @@ public final class ChestEspMod
 	private final KeyBinding toggleKey;
 	
 	private boolean enabled;
+	ChestEspConfig conf = new ChestEspConfig();
 	
 	public ChestEspMod()
 	{
@@ -63,7 +69,11 @@ public final class ChestEspMod
 				setEnabled(!enabled);
 		});
 	}
-	
+	private  void blockInfo(Block block){
+		String blockName = block.getTranslationKey();
+		BlockPos blockp = ChunkUtils.getBlockPosition(block);
+		System.out.println(blockName + blockp);
+	}
 	public void setEnabled(boolean enabled)
 	{
 		if(this.enabled == enabled)
@@ -93,45 +103,71 @@ public final class ChestEspMod
 		setEnabled(configHolder.get().enable);
 		if(!isEnabled())
 			return;
-		
+
 		groups.allGroups.forEach(ChestEspGroup::clear);
-		
+		/* TODO, add support for non block entities
+		if(conf.include_obsidian || conf.include_deepslate){
+			if(ChunkUtils.update){
+				ChunkUtils.getLoadedBlocks().forEach(block -> {
+					if(block != Blocks.AIR && block != Blocks.CAVE_AIR && block != Blocks.VOID_AIR) {
+						if (block == Blocks.OBSIDIAN) {
+							blockInfo(block);
+							groups.obsidian.add(block, ChunkUtils.getBlockPosition(block));
+						}
+						if (block == Blocks.CRYING_OBSIDIAN) {
+							blockInfo(block);
+							groups.obsidian.add(block, ChunkUtils.getBlockPosition(block));
+						}
+						if (block == Blocks.REINFORCED_DEEPSLATE) {
+							blockInfo(block);
+							groups.deepslate.add(block, ChunkUtils.getBlockPosition(block));
+						}
+					}
+				});
+			}
+		}
+*/
 		ChunkUtils.getLoadedBlockEntities().forEach(blockEntity -> {
-			if(blockEntity instanceof TrappedChestBlockEntity)
-				groups.trapChests.add(blockEntity);
-			else if(blockEntity instanceof ChestBlockEntity)
-				groups.basicChests.add(blockEntity);
-			else if(blockEntity instanceof EnderChestBlockEntity)
-				groups.enderChests.add(blockEntity);
-			else if(blockEntity instanceof ShulkerBoxBlockEntity)
-				groups.shulkerBoxes.add(blockEntity);
-			else if(blockEntity instanceof BarrelBlockEntity)
-				groups.barrels.add(blockEntity);
-			else if(blockEntity instanceof HopperBlockEntity)
-				groups.hoppers.add(blockEntity);
-			else if(blockEntity instanceof DropperBlockEntity)
-				groups.droppers.add(blockEntity);
-			else if(blockEntity instanceof DispenserBlockEntity)
-				groups.dispensers.add(blockEntity);
-			else if(blockEntity instanceof SculkCatalystBlockEntity)
-				groups.sculk.add(blockEntity);
-			else if(blockEntity instanceof SculkSensorBlockEntity)
-				groups.sculk.add(blockEntity);
-			else if(blockEntity instanceof SculkShriekerBlockEntity)
-				groups.sculk.add(blockEntity);
-			else if(blockEntity instanceof MobSpawnerBlockEntity)
-				groups.spawner.add(blockEntity);
-			else if(blockEntity instanceof AbstractFurnaceBlockEntity)
-				groups.furnaces.add(blockEntity);
+			if(blockEntity.getPos().getY() >= configHolder.get().min_height && blockEntity.getPos().getY() <= configHolder.get().max_height){
+				if(blockEntity instanceof TrappedChestBlockEntity)
+					groups.trapChests.add(blockEntity);
+				else if(blockEntity instanceof ChestBlockEntity)
+					groups.basicChests.add(blockEntity);
+				else if(blockEntity instanceof EnderChestBlockEntity)
+					groups.enderChests.add(blockEntity);
+				else if(blockEntity instanceof ShulkerBoxBlockEntity)
+					groups.shulkerBoxes.add(blockEntity);
+				else if(blockEntity instanceof BarrelBlockEntity)
+					groups.barrels.add(blockEntity);
+				else if(blockEntity instanceof HopperBlockEntity)
+					groups.hoppers.add(blockEntity);
+				else if(blockEntity instanceof DropperBlockEntity)
+					groups.droppers.add(blockEntity);
+				else if(blockEntity instanceof DispenserBlockEntity)
+					groups.dispensers.add(blockEntity);
+				else if(blockEntity instanceof SculkCatalystBlockEntity)
+					groups.sculk.add(blockEntity);
+				else if(blockEntity instanceof SculkSensorBlockEntity)
+					groups.sculk.add(blockEntity);
+				else if(blockEntity instanceof SculkShriekerBlockEntity)
+					groups.sculk.add(blockEntity);
+				else if(blockEntity instanceof MobSpawnerBlockEntity)
+					groups.spawner.add(blockEntity);
+				else if(blockEntity instanceof AbstractFurnaceBlockEntity)
+					groups.furnaces.add(blockEntity);
+			}
 		});
-		
-		for(Entity entity : MC.world.getEntities())
-			if(entity instanceof ChestMinecartEntity)
-				groups.chestCarts.add(entity);
-			else if(entity instanceof HopperMinecartEntity)
-				groups.hopperCarts.add(entity);
-			else if(entity instanceof ChestBoatEntity)
-				groups.chestBoats.add(entity);
+
+        assert MC.world != null;
+        for(Entity entity : MC.world.getEntities())
+			if(entity.getPos().getY() >= configHolder.get().min_height && entity.getPos().getY() <= configHolder.get().max_height) {
+				if (entity instanceof ChestMinecartEntity)
+					groups.chestCarts.add(entity);
+				else if (entity instanceof HopperMinecartEntity)
+					groups.hopperCarts.add(entity);
+				else if (entity instanceof ChestBoatEntity)
+					groups.chestBoats.add(entity);
+			}
 	}
 	
 	public boolean shouldCancelViewBobbing()

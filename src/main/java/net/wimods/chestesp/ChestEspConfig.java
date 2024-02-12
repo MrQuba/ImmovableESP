@@ -11,13 +11,15 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.EnumHandler.EnumDisplayOption;
+import net.minecraft.util.math.Vec3d;
 
 @Config(name = "chestesp")
 public final class ChestEspConfig implements ConfigData
 {
 	@ConfigEntry.Gui.Tooltip
-	public boolean enable = true;
-	
+	public boolean enable = false;
+	public int min_height = -64;
+	public int max_height = 320;
 	@ConfigEntry.Gui.EnumHandler(option = EnumDisplayOption.BUTTON)
 	@ConfigEntry.Gui.Tooltip
 	public ChestEspStyle style = ChestEspStyle.BOXES;
@@ -99,4 +101,12 @@ public final class ChestEspConfig implements ConfigData
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int spawner_color = 0xFF0000;
+    public boolean include_obsidian = true;
+	@ConfigEntry.ColorPicker
+	@ConfigEntry.Gui.Tooltip
+	public int obsidian_color = 0xFF0000;
+	public boolean include_deepslate = true;
+	@ConfigEntry.ColorPicker
+	@ConfigEntry.Gui.Tooltip
+	public int deepslate_color = 0xFF0000;
 }

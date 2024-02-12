@@ -2,6 +2,8 @@
   "key.chestesp.toggle": "Toggle ChestESP",
   "text.autoconfig.chestesp.title": "ChestESP Settings",
   "text.autoconfig.chestesp.option.enable": "Enable ImmovableESP",
+  "text.autoconfig.chestesp.option.min_height": "Lowest point",
+  "text.autoconfig.chestesp.option.max_height": "Highest point",
   "text.autoconfig.chestesp.option.enable.@Tooltip": "This setting allows you to completely disable ChestESP.\nProTip: If you go to Options > Controls > Key Binds, you can set up a keybind to do this more quickly.",
   "text.autoconfig.chestesp.option.style": "Style",
   "text.autoconfig.chestesp.option.style.@Tooltip": "Controls how ChestESP will highlight chests.\nBoxes only: Chests will be highlighted with a colored box around them.\nLines only: Chests will be highlighted with a line going from your crosshair to the chest.\nLines and boxes: Both of the above.",
@@ -48,5 +50,11 @@
   "text.autoconfig.chestesp.option.sculk_color.@Tooltip": "Sculk catalysts, sculk shriekers, and sculk sensors will be highlighted in this color.",
   "text.autoconfig.chestesp.option.include_spawner": "Include mob spawners",
   "text.autoconfig.chestesp.option.spawner_color": "Mob spawner color",
-  "text.autoconfig.chestesp.option.spawner_color.@Tooltip": "Mob spawners will be highlighted in this color."
+  "text.autoconfig.chestesp.option.spawner_color.@Tooltip": "Mob spawners will be highlighted in this color.",
+  "text.autoconfig.chestesp.option.include_obsidian": "Include obsidian",
+  "text.autoconfig.chestesp.option.obsidian_color": "Obsidian color",
+  "text.autoconfig.chestesp.option.obsidian_color.@Tooltip": "Obsidian, crying obsidian will be highlighted in this color.",
+  "text.autoconfig.chestesp.option.include_deepslate": "Include reinforced deepslate",
+  "text.autoconfig.chestesp.option.deepslate_color": "Reinforced deepslate color",
+  "text.autoconfig.chestesp.option.deepslate_color.@Tooltip": "Reinforced deepslate will be highlighted in this color."
 }
