@@ -107,7 +107,7 @@ public final class ChestEspMod
 			return;
 
 		groups.allGroups.forEach(ChestEspGroup::clear);
-	/*		if(configHolder.get().include_obsidian || configHolder.get().include_deepslate){
+		if(configHolder.get().include_obsidian || configHolder.get().include_deepslate){
 			if(ChunkUtils.update){
 				ChunkUtils.getBlocksList(configHolder).forEach(block -> {
 					if(block != null) {
@@ -134,7 +134,7 @@ public final class ChestEspMod
 						}
 				});
 			}
-		}*/
+		}
 		ChunkUtils.getLoadedBlockEntities().forEach(blockEntity -> {
 			if(blockEntity.getPos().getY() >= configHolder.get().min_height && blockEntity.getPos().getY() <= configHolder.get().max_height){
 				if(blockEntity instanceof TrappedChestBlockEntity)
