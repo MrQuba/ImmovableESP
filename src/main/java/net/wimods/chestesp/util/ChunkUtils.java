@@ -53,6 +53,7 @@ public static List<Pair<Block, BlockPos>> getBlocksList(ConfigHolder<ChestEspCon
 	int z = min.getZ();
 
 	block.clear();
+	// prevention of returning null value
 	block.add(Blocks.OBSIDIAN, new BlockPos(1, -60, 1));
 
 	while (x <= max.getX() && z <= max.getZ() && y <= max.getY()) {
@@ -60,8 +61,6 @@ public static List<Pair<Block, BlockPos>> getBlocksList(ConfigHolder<ChestEspCon
 
 		BlockPos currentPos = new BlockPos(x, y, z);
 		BlockState bs = MC.world.getBlockState(currentPos);
-
-		System.out.println("block: " + bs.getBlock() + " block pos:" + currentPos);
 
 		if (bs.getBlock().equals(Blocks.OBSIDIAN) || bs.getBlock().equals(Blocks.CRYING_OBSIDIAN) || bs.getBlock().equals(Blocks.REINFORCED_DEEPSLATE)) {
 			block.add(bs.getBlock(), currentPos);
