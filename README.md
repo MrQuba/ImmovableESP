@@ -6,7 +6,7 @@ This mod does what orginal ChestESP mod did, but with new features:
 - Highlights reinforced deepslate
 - Highlights obsidian and crying obsidian
 - Highlights item frames and glowing item frames
-- Adds height limitations
+- Adds height limitations (thanks to LazyPerfection for suggestion)
 # ChestESP
 
 This mod highlights nearby chests so you can see them through walls. It's based on a Wurst Client feature of the same name.
