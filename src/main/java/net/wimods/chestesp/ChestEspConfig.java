@@ -28,67 +28,72 @@ public final class ChestEspConfig implements ConfigData
 	@ConfigEntry.Gui.Tooltip
 	public int chest_color = 0x00FF00;
 	
-	public boolean include_trap_chests = false;
+	public boolean include_trap_chests = true;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int trap_chest_color = 0xFF8000;
 	
-	public boolean include_ender_chests = false;
+	public boolean include_ender_chests = true;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int ender_chest_color = 0x00FFFF;
 	
-	public boolean include_chest_carts = false;
+	public boolean include_chest_carts = true;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int chest_cart_color = 0xFFFF00;
 	
-	public boolean include_chest_boats = false;
+	public boolean include_chest_boats = true;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int chest_boat_color = 0xFFFF00;
 	
-	public boolean include_barrels = false;
+	public boolean include_barrels = true;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int barrel_color = 0x00FF00;
 	
-	public boolean include_shulker_boxes = false;
+	public boolean include_shulker_boxes = true;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int shulker_box_color = 0xFF00FF;
 	
-	public boolean include_hoppers = false;
+	public boolean include_hoppers = true;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int hopper_color = 0xFFFFFF;
 	
-	public boolean include_hopper_carts = false;
+	public boolean include_hopper_carts = true;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int hopper_cart_color = 0xFFFF00;
+	public boolean include_wardens = true;
+
+	@ConfigEntry.ColorPicker
+	@ConfigEntry.Gui.Tooltip
+	public int warden_color = 0xFFFF00;
 	
-	public boolean include_droppers = false;
+	public boolean include_droppers = true;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int dropper_color = 0xFFFFFF;
 	
-	public boolean include_dispensers = false;
+	public boolean include_dispensers = true;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int dispenser_color = 0xFF8000;
 	
-	public boolean include_furnaces = false;
+	public boolean include_furnaces = true;
 	
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
@@ -109,4 +114,9 @@ public final class ChestEspConfig implements ConfigData
 	@ConfigEntry.ColorPicker
 	@ConfigEntry.Gui.Tooltip
 	public int deepslate_color = 0xFF0000;
+	public boolean include_frames = true;
+
+	@ConfigEntry.ColorPicker
+	@ConfigEntry.Gui.Tooltip
+	public int frame_color = 0xFF0000;
 }

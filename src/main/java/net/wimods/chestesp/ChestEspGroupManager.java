@@ -30,6 +30,9 @@ public final class ChestEspGroupManager
 	public final ChestEspBlockGroup furnaces;
 	public final ChestEspNormalBlockGroup obsidian;
 	public final ChestEspNormalBlockGroup deepslate;
+	public final ChestEspEntityGroup wardens;
+
+	public final ChestEspEntityGroup frames;
 	
 	public final List<ChestEspGroup> allGroups;
 	public final List<ChestEspEntityGroup> entityGroups;
@@ -68,11 +71,14 @@ public final class ChestEspGroupManager
 				c -> c.include_obsidian);
 		this.deepslate = new ChestEspNormalBlockGroup(ch, c-> c.deepslate_color,
 				c -> c.include_deepslate);
-
+		this.wardens = new ChestEspEntityGroup(ch, c -> c.warden_color,
+				c -> c.include_wardens);
+		this.frames = new ChestEspEntityGroup(ch, c -> c.frame_color,
+				c -> c.include_frames);
         allGroups = Arrays.asList(basicChests, trapChests, enderChests,
 			chestCarts, chestBoats, barrels, shulkerBoxes, hoppers, hopperCarts,
-			droppers, dispensers, furnaces, sculk, spawner, obsidian, deepslate);
-		entityGroups = Arrays.asList(chestCarts, chestBoats, hopperCarts);
+			droppers, dispensers, furnaces, sculk, spawner, obsidian, deepslate, wardens, frames);
+		entityGroups = Arrays.asList(chestCarts, chestBoats, hopperCarts, wardens, frames);
 		blockGroups = Arrays.asList(obsidian, deepslate);
 	}
 }

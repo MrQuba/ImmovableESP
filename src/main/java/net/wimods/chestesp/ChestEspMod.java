@@ -23,10 +23,14 @@ import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.decoration.GlowItemFrameEntity;
+import net.minecraft.entity.decoration.ItemFrameEntity;
+import net.minecraft.entity.mob.WardenEntity;
 import net.minecraft.entity.vehicle.ChestBoatEntity;
 import net.minecraft.entity.vehicle.ChestMinecartEntity;
 import net.minecraft.entity.vehicle.HopperMinecartEntity;
-import net.minecraft.text.Text;
+import net.mrquba.data.BlockInfo;
+import net.mrquba.data.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.wimods.chestesp.util.ChunkUtils;
 import net.wimods.chestesp.util.RenderUtils;
@@ -48,7 +52,6 @@ public final class ChestEspMod
 	private final KeyBinding toggleKey;
 	
 	private boolean enabled;
-	ChestEspConfig conf = new ChestEspConfig();
 	
 	public ChestEspMod()
 	{
@@ -71,8 +74,7 @@ public final class ChestEspMod
 	}
 	private  void blockInfo(Block block){
 		String blockName = block.getTranslationKey();
-		BlockPos blockp = ChunkUtils.getBlockPosition(block);
-		System.out.println(blockName + blockp);
+		System.out.println(blockName);
 	}
 	public void setEnabled(boolean enabled)
 	{
@@ -105,28 +107,34 @@ public final class ChestEspMod
 			return;
 
 		groups.allGroups.forEach(ChestEspGroup::clear);
-		/* TODO, add support for non block entities
-		if(conf.include_obsidian || conf.include_deepslate){
+	/*		if(configHolder.get().include_obsidian || configHolder.get().include_deepslate){
 			if(ChunkUtils.update){
-				ChunkUtils.getLoadedBlocks().forEach(block -> {
-					if(block != Blocks.AIR && block != Blocks.CAVE_AIR && block != Blocks.VOID_AIR) {
-						if (block == Blocks.OBSIDIAN) {
-							blockInfo(block);
-							groups.obsidian.add(block, ChunkUtils.getBlockPosition(block));
-						}
-						if (block == Blocks.CRYING_OBSIDIAN) {
-							blockInfo(block);
-							groups.obsidian.add(block, ChunkUtils.getBlockPosition(block));
-						}
-						if (block == Blocks.REINFORCED_DEEPSLATE) {
-							blockInfo(block);
-							groups.deepslate.add(block, ChunkUtils.getBlockPosition(block));
+				ChunkUtils.getBlocksList(configHolder).forEach(block -> {
+					if(block != null) {
+						if (!block.getFirst().equals(Blocks.AIR) && !block.getFirst().equals(Blocks.CAVE_AIR) && !block.getFirst().equals(Blocks.VOID_AIR)) {
+						if(block.getSecond().getY() >= configHolder.get().min_height && block.getSecond().getY() <= configHolder.get().max_height){
+						//System.out.println("Block in ChestESPMod.java: " + block.getFirst());
+							if (block.getFirst().equals(Blocks.OBSIDIAN)) {
+								//System.out.println("added obsidian");
+								//blockInfo(block.getFirst());
+								groups.obsidian.add(block.getFirst(), block.getSecond());
+							}
+							if (block.getFirst().equals(Blocks.CRYING_OBSIDIAN)) {
+								//System.out.println("added crying obsidian");
+								//blockInfo(block.getFirst());
+								groups.obsidian.add(block.getFirst(), block.getSecond());
+							}
+							if (block.getFirst().equals(Blocks.REINFORCED_DEEPSLATE)) {
+								//System.out.println("added reinforced deepslate");
+								//blockInfo(block.getFirst());
+								groups.deepslate.add(block.getFirst(), block.getSecond());
+							}
 						}
 					}
+						}
 				});
 			}
-		}
-*/
+		}*/
 		ChunkUtils.getLoadedBlockEntities().forEach(blockEntity -> {
 			if(blockEntity.getPos().getY() >= configHolder.get().min_height && blockEntity.getPos().getY() <= configHolder.get().max_height){
 				if(blockEntity instanceof TrappedChestBlockEntity)
@@ -167,6 +175,12 @@ public final class ChestEspMod
 					groups.hopperCarts.add(entity);
 				else if (entity instanceof ChestBoatEntity)
 					groups.chestBoats.add(entity);
+				else if (entity instanceof WardenEntity)
+					groups.wardens.add(entity);
+				else if (entity instanceof ItemFrameEntity)
+					groups.frames.add(entity);
+				else if (entity instanceof GlowItemFrameEntity)
+					groups.frames.add(entity);
 			}
 	}
 	

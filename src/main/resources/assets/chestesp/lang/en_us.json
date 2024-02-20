@@ -36,6 +36,9 @@
   "text.autoconfig.chestesp.option.include_hopper_carts": "Include hopper carts",
   "text.autoconfig.chestesp.option.hopper_cart_color": "Hopper cart color",
   "text.autoconfig.chestesp.option.hopper_cart_color.@Tooltip": "Minecarts with hoppers will be highlighted in this color.",
+  "text.autoconfig.chestesp.option.include_wardens": "Include wardens",
+  "text.autoconfig.chestesp.option.warden_color": "Warden color",
+  "text.autoconfig.chestesp.option.warden_color.@Tooltip": "Wardens will be highlighted in this color.",
   "text.autoconfig.chestesp.option.include_droppers": "Include droppers",
   "text.autoconfig.chestesp.option.dropper_color": "Dropper color",
   "text.autoconfig.chestesp.option.dropper_color.@Tooltip": "Droppers will be highlighted in this color.",
@@ -56,5 +59,8 @@
   "text.autoconfig.chestesp.option.obsidian_color.@Tooltip": "Obsidian, crying obsidian will be highlighted in this color.",
   "text.autoconfig.chestesp.option.include_deepslate": "Include reinforced deepslate",
   "text.autoconfig.chestesp.option.deepslate_color": "Reinforced deepslate color",
-  "text.autoconfig.chestesp.option.deepslate_color.@Tooltip": "Reinforced deepslate will be highlighted in this color."
+  "text.autoconfig.chestesp.option.deepslate_color.@Tooltip": "Reinforced deepslate will be highlighted in this color.",
+  "text.autoconfig.chestesp.option.include_frames": "Include item frames",
+  "text.autoconfig.chestesp.option.frame_color": "Item frame color",
+  "text.autoconfig.chestesp.option.frame_color.@Tooltip": "Item frames, Glowing item frames will be highlighted in this color."
 }
