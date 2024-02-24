@@ -4,9 +4,9 @@
   "version": "${version}",
 
   "name": "ChestESP",
-  "description": "This mod highlights nearby immovable blocks so you can see them through walls. It's based on a Wurst Client ChestESP feature.",
+  "description": "This mod highlights nearby immovable blocks (and some more stuff) so you can see them through walls. It's based on a Wurst Client ChestESP feature.",
   "authors": [
-    "Orginal: Alexander01998, Fork: MrQuba"
+    "Orginal: Alexander01998, Edit: MrQuba"
   ],
   "contact": {
     "homepage": "https://www.wimods.net/chestesp/?utm_source=ChestESP&utm_medium=ModMenu&utm_content=Website",
