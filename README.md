@@ -1,3 +1,12 @@
+# ImmovableESP
+This mod does what orginal ChestESP mod did, but with new features:
+- Highlights sculk sensors, shriekers and catalysts
+- Highlights mob spawners
+- Highlights wardens
+- Highlights reinforced deepslate
+- Highlights obsidian and crying obsidian
+- Highlights item frames and glowing item frames
+- Adds height limitations (thanks to LazyPerfection for suggestion)
 # ChestESP
 
 This mod highlights nearby chests so you can see them through walls. It's based on a Wurst Client feature of the same name.
