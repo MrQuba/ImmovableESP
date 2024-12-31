@@ -13,9 +13,7 @@ import me.shedaniel.autoconfig.ConfigHolder;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.CryingObsidianBlock;
 import net.minecraft.block.entity.*;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
@@ -29,8 +27,6 @@ import net.minecraft.entity.mob.WardenEntity;
 import net.minecraft.entity.vehicle.ChestBoatEntity;
 import net.minecraft.entity.vehicle.ChestMinecartEntity;
 import net.minecraft.entity.vehicle.HopperMinecartEntity;
-import net.mrquba.data.BlockInfo;
-import net.mrquba.data.Pair;
 import net.minecraft.util.math.BlockPos;
 import net.wimods.chestesp.util.ChunkUtils;
 import net.wimods.chestesp.util.RenderUtils;
@@ -52,7 +48,14 @@ public final class ChestEspMod
 	private final KeyBinding toggleKey;
 	
 	private boolean enabled;
-	
+	private boolean ValueBetween(BlockPos b){
+		final boolean y = b.getY() >= configHolder.get().min_height && b.getY() <= configHolder.get().max_height;
+		if(!configHolder.get().enable_area)
+			return y;
+		final boolean x = b.getX() >= configHolder.get().area_start_x && b.getX() <= configHolder.get().area_end_x;
+		final boolean z = b.getZ() >= configHolder.get().area_start_z && b.getZ() <= configHolder.get().area_end_z;
+		return  y && x && z;
+	}
 	public ChestEspMod()
 	{
 		LOGGER.info("Starting ChestESP...");
@@ -71,10 +74,6 @@ public final class ChestEspMod
 			while(toggleKey.wasPressed())
 				setEnabled(!enabled);
 		});
-	}
-	private  void blockInfo(Block block){
-		String blockName = block.getTranslationKey();
-		System.out.println(blockName);
 	}
 	public void setEnabled(boolean enabled)
 	{
@@ -108,35 +107,24 @@ public final class ChestEspMod
 
 		groups.allGroups.forEach(ChestEspGroup::clear);
 		if(configHolder.get().include_obsidian || configHolder.get().include_deepslate){
-			if(ChunkUtils.update){
 				ChunkUtils.getBlocksList(configHolder).forEach(block -> {
-					if(block != null) {
-						if (!block.getFirst().equals(Blocks.AIR) && !block.getFirst().equals(Blocks.CAVE_AIR) && !block.getFirst().equals(Blocks.VOID_AIR)) {
-						if(block.getSecond().getY() >= configHolder.get().min_height && block.getSecond().getY() <= configHolder.get().max_height){
-						//System.out.println("Block in ChestESPMod.java: " + block.getFirst());
-							if (block.getFirst().equals(Blocks.OBSIDIAN)) {
-								//System.out.println("added obsidian");
-								//blockInfo(block.getFirst());
-								groups.obsidian.add(block.getFirst(), block.getSecond());
+						assert(block != null);
+						if (block.first.equals(Blocks.AIR) || block.first.equals(Blocks.CAVE_AIR) || block.first.equals(Blocks.VOID_AIR)) return;
+						if(block.second.getY() >= configHolder.get().min_height && block.second.getY() <= configHolder.get().max_height){
+							if (block.first.equals(Blocks.OBSIDIAN)) {
+								groups.obsidian.add(block);
 							}
-							if (block.getFirst().equals(Blocks.CRYING_OBSIDIAN)) {
-								//System.out.println("added crying obsidian");
-								//blockInfo(block.getFirst());
-								groups.obsidian.add(block.getFirst(), block.getSecond());
+							if (block.first.equals(Blocks.CRYING_OBSIDIAN)) {
+								groups.obsidian.add(block);
 							}
-							if (block.getFirst().equals(Blocks.REINFORCED_DEEPSLATE)) {
-								//System.out.println("added reinforced deepslate");
-								//blockInfo(block.getFirst());
-								groups.deepslate.add(block.getFirst(), block.getSecond());
+							if (block.first.equals(Blocks.REINFORCED_DEEPSLATE)) {
+								groups.deepslate.add(block);
 							}
-						}
-					}
 						}
 				});
-			}
 		}
-		ChunkUtils.getLoadedBlockEntities().forEach(blockEntity -> {
-			if(blockEntity.getPos().getY() >= configHolder.get().min_height && blockEntity.getPos().getY() <= configHolder.get().max_height){
+		ChunkUtils.getLoadedBlockEntities(configHolder).forEach(blockEntity -> {
+			if(ValueBetween(blockEntity.getPos())){
 				if(blockEntity instanceof TrappedChestBlockEntity)
 					groups.trapChests.add(blockEntity);
 				else if(blockEntity instanceof ChestBlockEntity)
@@ -168,7 +156,7 @@ public final class ChestEspMod
 
         assert MC.world != null;
         for(Entity entity : MC.world.getEntities())
-			if(entity.getPos().getY() >= configHolder.get().min_height && entity.getPos().getY() <= configHolder.get().max_height) {
+			if(ValueBetween(BlockPos.ofFloored(entity.getPos()))) {
 				if (entity instanceof ChestMinecartEntity)
 					groups.chestCarts.add(entity);
 				else if (entity instanceof HopperMinecartEntity)
@@ -238,10 +226,5 @@ public final class ChestEspMod
 	public boolean isEnabled()
 	{
 		return enabled;
-	}
-	
-	public ConfigHolder<ChestEspConfig> getConfigHolder()
-	{
-		return configHolder;
 	}
 }

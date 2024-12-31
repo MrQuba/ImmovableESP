@@ -11,7 +11,6 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.EnumHandler.EnumDisplayOption;
-import net.minecraft.util.math.Vec3d;
 
 @Config(name = "chestesp")
 public final class ChestEspConfig implements ConfigData
@@ -20,6 +19,12 @@ public final class ChestEspConfig implements ConfigData
 	public boolean enable = false;
 	public int min_height = -64;
 	public int max_height = 320;
+	@ConfigEntry.Gui.Tooltip
+	public boolean enable_area = false;
+	public int area_start_x = 0;
+	public int area_start_z = 0;
+	public int area_end_x = 16;
+	public int area_end_z = 16;
 	@ConfigEntry.Gui.EnumHandler(option = EnumDisplayOption.BUTTON)
 	@ConfigEntry.Gui.Tooltip
 	public ChestEspStyle style = ChestEspStyle.BOXES;
